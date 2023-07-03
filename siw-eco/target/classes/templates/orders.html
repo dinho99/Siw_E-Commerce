@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Ecommerce - Homepage
+		</title>
+		<link rel="stylesheet" href="/css/stile.css" />
+	</head>
+	<body>
+		<header>
+			<nav>
+				<div class="navbar">
+				  <div class="logo">
+					<a href="/">
+						<img src="/images/logo-ecommerce.png" width="9%"/>
+					</a>
+				  </div>
+				  <ul class="nav-links">
+					<li><a href="/sneakers">Sneakers</a></li>
+					<li><a href="/orders">Ordini</a></li>
+					<li><a href="/wishList">WishList</a></li>
+				</ul>
+				  <div class="buttons">
+					<span th:unless="${userDetails}">
+						<a href="/login" class="login-button">Login</a>
+					</span>
+					<span th:if="${userDetails}">
+						<a href="/logout" class="login-button">Logout</a>
+					</span>
+					<a href="/cart" class="cart-button">Carrello</a>
+				  </div>
+				</div>
+			  </nav>
+		</header>
+		<main>
+			<div class="order-summary">
+                <h1>Riepilogo Ordini</h1>
+                <div th:if="${orders==null || orders.isEmpty()}">Non hai ancora effettuato ordini!</div>
+                <ul class="order-details">
+                    <li th:each="order : ${orders}">
+                        <div class="order">
+                            <p th:text="'Numero ordine: ' + ${order.id}">Ordine</p>
+                            <p th:text="'Effettuato il: ' + ${order.date}">Data</p>
+                            <p th:text="'Costo: ' + ${order.total} + '0 $'"></p>
+                            <a th:href="@{'/orderDetails/' + ${order.id}}">Visualizza maggiori dettagli</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+		</main>
+	</body>
+</html>

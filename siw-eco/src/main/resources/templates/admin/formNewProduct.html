@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			New Product
+		</title>
+		<link rel="stylesheet" href="/css/stile.css" />
+	</head>
+	<body>
+		<header>
+			<nav>
+				<div class="navbar">
+				  <div class="logo">
+					<a href="/">
+						<img src="/images/logo-ecommerce.png" width="9%"/>
+					</a>
+				</div>
+				<ul class="nav-links">
+					<li><a href="/sneakers">Sneakers</a></li>
+					<li><a href="/orders">Ordini</a></li>
+					<li><a href="/wishList">WishList</a></li>
+				</ul>
+				  <div class="buttons">
+					<span th:unless="${userDetails}">
+						<a href="/login" class="login-button">Login</a>
+					</span>
+					<span th:if="${userDetails}">
+						<a href="/logout" class="login-button">Logout</a>
+					</span>
+					<a href="/cart" class="cart-button">Carrello</a>
+				  </div>
+				</div>
+			  </nav>
+		</header>
+		<main>
+            <h1>Crea un nuovo prodotto da inserire nello shop:</h1>
+            <form th:action="@{/admin/newProduct}" method="POST" th:object="${product}">
+                <div>
+                    <span><input type="text" th:field="${product.code}" placeholder="Codice"></span>
+                </div>
+                <div>
+                    <span><input type="text" th:field="${product.name}" placeholder="Nome"></span>
+                </div>
+                <div>
+                    <span><input type="text" th:field="${product.price}" placeholder="Prezzo"></span>
+                </div>
+                <div>
+                    <span><input type="text" th:field="${product.urlImage}" placeholder="URL dell'immagine"></span>
+                </div>
+                <div>
+                    <span><button type="submit">Conferma</button></span>
+                </div>
+            </form>
+		</main>
+	</body>
+</html>

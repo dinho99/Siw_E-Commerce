@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Ecommerce - Homepage
+		</title>
+		<link rel="stylesheet" href="/css/stile.css" />
+	</head>
+	<body>
+		<header>
+			<nav>
+				<div class="navbar">
+				  <div class="logo">
+					<a href="/">
+						<img src="/images/logo-ecommerce.png" width="9%"/>
+					</a>
+				</div>
+				<ul class="nav-links">
+					<li><a href="/sneakers">Sneakers</a></li>
+					<li><a href="/orders">Ordini</a></li>
+					<li><a href="/wishList">WishList</a></li>
+				</ul>
+				<div class="buttons">
+					<span th:unless="${userDetails}">
+						<a href="/login" class="login-button">Login</a>
+					</span>
+					<span th:if="${userDetails}">
+						<a href="/logout" class="login-button">Logout</a>
+					</span>
+					<a href="/cart" class="cart-button">Carrello</a>
+				  </div>
+				</div>
+			  </nav>
+		</header>
+		<main>
+			<section class="welcome">
+			  <h1>Benvenuto nel nostro negozio online:</h1>
+			  <h5>Qui potrai comprare tutto ciò che ti occorre, vedere i tuoi veccchi ordini e aggiungere i prodotti che più ami nella lista dei desideri!</h5>
+			  <div class="buttons-container">
+				<a href="/shop" class="welcome-button">Negozio</a>
+				<a href="/orders" class="welcome-button">Ordini</a>
+				<a href="/wishList" class="welcome-button">Wishlist</a>
+			  </div>
+			</section>
+		</main>
+	</body>
+</html>

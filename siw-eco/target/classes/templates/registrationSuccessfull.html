@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>SiwMovie - Registrazione conclusa</title>
+	<link rel="stylesheet" href="/css/stile.css" />
+</head>
+
+<body>
+	<header>
+		<nav>
+			<div class="navbar">
+			  <div class="logo">
+				<a href="/">
+					<img src="/images/logo-ecommerce.png" width="9%"/>
+				</a>
+			  </div>
+			  <ul class="nav-links">
+				<li><a href="/sneakers">Sneakers</a></li>
+				<li><a href="/orders">Ordini</a></li>
+				<li><a href="/wishList">WishList</a></li>
+			</ul>
+			  <div class="buttons">
+				<span th:unless="${userDetails}">
+					<a href="/login" class="login-button">Login</a>
+				</span>
+				<span th:if="${userDetails}">
+					<a href="/logout" class="login-button">Logout</a>
+				</span>
+				<a href="/cart" class="cart-button">Carrello</a>
+			  </div>
+			</div>
+		  </nav>
+	</header>
+
+	<main>
+		<div>
+			<a href="/"><img src="/images/logo-siw.png" width="10%"/></a>
+		</div>
+		<h1>Congratulazioni ti sei registrato!</h1>
+		<div>
+			<span>Nome: </span>
+			<span th:text="${user.name}"></span>
+		</div>
+		<div>
+			<span>Cognome: </span>
+			<span th:text="${user.surname}"></span>
+		</div>
+		<div>
+			<span>Email: </span>
+			<span th:text="${user.email}"></span>
+		</div>
+	</main>
+</body>
+</html>

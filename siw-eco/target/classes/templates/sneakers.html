@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Sneakers
+		</title>
+		<link rel="stylesheet" href="/css/stile.css" />
+	</head>
+	<body>
+		<header>
+			<nav>
+				<div class="navbar">
+				  <div class="logo">
+					<a href="/">
+						<img src="/images/logo-ecommerce.png" width="9%"/>
+					</a>
+				  </div>
+				  <ul class="nav-links">
+					<li><a href="/sneakers">Sneakers</a></li>
+					<li><a href="/orders">Ordini</a></li>
+					<li><a href="/wishList">WishList</a></li>
+				</ul>
+				  <div class="buttons">
+					<span th:unless="${userDetails}">
+						<a href="/login" class="login-button">Login</a>
+					</span>
+					<span th:if="${userDetails}">
+						<a href="/logout" class="login-button">Logout</a>
+					</span>
+					<a href="/cart" class="cart-button">Carrello</a>
+				  </div>
+				</div>
+			  </nav>
+		</header>
+		<main>
+			<section class="product-list">
+                <h1>Sneakers disponibili:</h1>
+                <div th:if="${sneakers==null || sneakers.isEmpty()}">Non ci sono sneakers nel sistema!</div>
+                <ul class="product-container">
+                    <li th:each="sneaker : ${sneakers}">
+                        <div class="product">
+                            <img width="10%" th:src=${sneaker.urlImage} alt="Vestito 1">
+                            <p th:text="${sneaker.name} + ' - ' + ${sneaker.price} + '0$'">Sneaker</p>
+                            <a th:href="@{'/addProductToCart/' + ${sneaker.id}}" class="add-to-cart">Aggiungi al carrello</a>
+							<a th:href="@{'/addProductToWishList/' + ${sneaker.id}}" class="add-to-wishlist">Aggiungi alla wishlist</a>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+		</main>
+	</body>
+</html>

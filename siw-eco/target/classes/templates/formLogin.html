@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>
+		Ecommerce - Login
+	</title>
+	<link rel="stylesheet" href="/css/stile.css" />
+</head>
+
+<body>
+	<header>
+		<nav>
+			<div class="navbar">
+			  <div class="logo">
+				<a href="/">
+					<img src="/images/logo-ecommerce.png" width="9%"/>
+				</a>
+			  </div>
+			  <ul class="nav-links">
+				<li><a href="/sneakers">Sneakers</a></li>
+				<li><a href="/orders">Ordini</a></li>
+				<li><a href="/wishList">WishList</a></li>
+			</ul>
+			  <div class="buttons">
+				<span th:unless="${userDetails}">
+					<a href="/login" class="login-button">Login</a>
+				</span>
+				<span th:if="${userDetails}">
+					<a href="/logout" class="login-button">Logout</a>
+				</span>
+				<a href="/cart" class="cart-button">Carrello</a>
+			  </div>
+			</div>
+		  </nav>
+	</header>
+
+	<main>
+		<section class="login">
+			<div>
+				<a href="/"><img src="/images/logo-ecommerce.png" width="10%"/></a>
+			</div>
+			<h1>Accedi al tuo account</h1>
+			<form th:action="@{/login}" method="POST">
+				<label for="username"></label>
+				<input name="username" type="text" placeholder="Username" required />
+	
+				<label for="password"></label>
+				<input name="password" type="password" placeholder="Password" required />
+	
+				<span th:if="${param.error != null}">Username o password errati</span>
+				<button type="submit" class="login-submit">Login</button>
+			</form>
+			<div class="register">
+				<a th:href="@{/register}" th:text="Registrati" class="register-button">Registrati</a>
+			</div>
+		</section>
+	</main>
+</body>
+
+</html>

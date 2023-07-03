@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Shop
+		</title>
+		<link rel="stylesheet" href="/css/stile.css" />
+	</head>
+	<body>
+		<header>
+			<nav>
+				<div class="navbar">
+				  <div class="logo">
+					<a href="/">
+						<img src="/images/logo-ecommerce.png" width="9%"/>
+					</a>
+				  </div>
+				  <ul class="nav-links">
+					<li><a href="/sneakers">Sneakers</a></li>
+					<li><a href="/orders">Ordini</a></li>
+					<li><a href="/wishList">WishList</a></li>
+				</ul>
+				  <div class="buttons">
+					<span th:unless="${userDetails}">
+						<a href="/login" class="login-button">Login</a>
+					</span>
+					<span th:if="${userDetails}">
+						<a href="/logout" class="login-button">Logout</a>
+					</span>
+					<a href="/cart" class="cart-button">Carrello</a>
+				  </div>
+				</div>
+			  </nav>
+		</header>
+		<main>
+			<section class="categories">
+				<h1>Benvenuto nello shop:</h1>
+                <h3>Accedi alla nostra vastissima collezione di scarpe, dalle più comuni alle più introvabili!</h3>
+                <div class="categories-container">
+                  <a href="/sneakers" class="category-button">Vedi le Scarpe</a>
+                </div>
+			</section>
+		</main>
+	</body>
+</html>

@@ -1,0 +1,23 @@
+insert into product(id, code, name, price, url_image, cart_id, order_id, wish_list_id) values(nextval('product_seq'), 'MJ23xOFFW', 'OFF-WHITE X AIR JORDAN 1 RETRO HIGH CHICAGO', 10000, 'https://www.thehypeplace.com/109-large_default/off-white-x-air-jordan-1-retro-high-chicago.jpg', null, null, null);
+insert into product(id, code, name, price, url_image, cart_id, order_id, wish_list_id) values(nextval('product_seq'), 'MJ23xOFFW', 'OFF-WHITE X NIKE AIR MAX 90 BLACK', 900, 'https://www.thehypeplace.com/88-large_default/off-white-x-nike-air-max-90-black.jpg', null, null, null);
+insert into product(id, code, name, price, url_image, cart_id, order_id, wish_list_id) values(nextval('product_seq'), 'YEEZY', 'YEEZY BOOST 350 V2 BLUE TINT', 400, 'https://www.thehypeplace.com/288-large_default/yeezy-boost-350-v2-blue-tint.jpg', null, null, null);
+insert into product(id, code, name, price, url_image, cart_id, order_id, wish_list_id) values(nextval('product_seq'), 'NMDHR', 'ADIDAS NMD HUMAN RACE GREEN', 600, 'https://www.thehypeplace.com/2179-large_default/adidas-nmd-human-race-green.jpg', null, null, null);
+insert into product(id, code, name, price, url_image, cart_id, order_id, wish_list_id) values(nextval('product_seq'), 'MJ23', 'AIR JORDAN 4 RETRO BRED 2019', 350, 'https://www.thehypeplace.com/2370-large_default/air-jordan-4-retro-bred-2019.jpg', null, null, null);
+insert into product(id, code, name, price, url_image, cart_id, order_id, wish_list_id) values(nextval('product_seq'), 'MJ23xTS', 'AIR JORDAN 1 RETRO HIGH TRAVIS SCOTT', 2600, 'https://www.thehypeplace.com/567-large_default/air-jordan-1-retro-high-travis-scott.jpg', null, null, null);
+insert into product(id, code, name, price, url_image, cart_id, order_id, wish_list_id) values(nextval('product_seq'), 'NIKExOFFW', 'OFF-WHITE X NIKE AIR PRESTO BLACK', 850, 'https://www.thehypeplace.com/53-large_default/off-white-x-nike-air-presto-black.jpg', null, null, null);
+insert into product(id, code, name, price, url_image, cart_id, order_id, wish_list_id) values(nextval('product_seq'), 'MJ23xOFFW', 'OFF-WHITE X AIR JORDAN 4 RETRO SAIL', 2500, 'https://www.thehypeplace.com/5432-large_default/off-white-x-air-jordan-4-retro-sail-w.jpg', null, null, null);
+insert into product(id, code, name, price, url_image, cart_id, order_id, wish_list_id) values(nextval('product_seq'), 'NIKExOFFW', 'OFF-WHITE X NIKE DUNK LOW PINE GREEN', 1000, 'https://www.thehypeplace.com/4861-large_default/off-white-x-nike-dunk-low-pine-green.jpg', null, null, null);
+insert into product(id, code, name, price, url_image, cart_id, order_id, wish_list_id) values(nextval('product_seq'), 'NIKExOFFW', 'OFF-WHITE X NIKE AIR FORCE 1 LOW VOLT', 1100, 'https://www.thehypeplace.com/72-large_default/off-white-x-nike-air-force-1-low-volt.jpg', null, null, null);
+insert into product(id, code, name, price, url_image, cart_id, order_id, wish_list_id) values(nextval('product_seq'), 'NIKExOFFW', 'OFF-WHITE X NIKE AIR MAX 90 DESERT ORE', 800, 'https://www.thehypeplace.com/84-large_default/off-white-x-nike-air-max-90-desert-ore.jpg', null, null, null);
+insert into product(id, code, name, price, url_image, cart_id, order_id, wish_list_id) values(nextval('product_seq'), 'YEEZY', 'YEEZY BOOST 700 WAVE RUNNER', 500, 'https://www.thehypeplace.com/342-large_default/yeezy-boost-700-wave-runner.jpg', null, null, null);
+insert into product(id, code, name, price, url_image, cart_id, order_id, wish_list_id) values(nextval('product_seq'), 'YEEZY', 'YEEZY BOOST 500 UTILITY BLACK', 350, 'https://www.thehypeplace.com/1159-large_default/yeezy-boost-500-utility-black.jpg', null, null, null);
+insert into product(id, code, name, price, url_image, cart_id, order_id, wish_list_id) values(nextval('product_seq'), 'YEEZY', 'YEEZY BOOST 500 SALT', 400, 'https://www.thehypeplace.com/1151-large_default/yeezy-boost-500-salt.jpg', null, null, null);
+insert into product(id, code, name, price, url_image, cart_id, order_id, wish_list_id) values(nextval('product_seq'), 'YEEZY', 'YEEZY BOOST 350 V2 OREO', 400, 'https://www.thehypeplace.com/243-large_default/yeezy-boost-350-v2-oreo.jpg', null, null, null);
+
+
+insert into cart (id, total) values(nextval('cart_seq'), 0);
+
+insert into users (id, email, name, surname) values(nextval('users_seq'), 'giulia@gmail.com', 'Giulia', 'Campestre');
+insert into credentials(id, password, role, username, user_id) values(nextval('credentials_seq'), '$2a$10$ug8Rzgx/KVAxoKZoz4rH5e6a42cgDQGq.kE0z08FtAfriUHDeFqlW', 'ADMIN', 'giuggi', 1);
+
+insert into wish_list(id, total, user_id) values(nextval('wish_list_seq'), 0, 1);

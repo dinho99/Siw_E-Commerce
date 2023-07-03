@@ -1,0 +1,112 @@
+package it.uniroma3.ecommerce.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import it.uniroma3.ecommerce.model.Cart;
+import it.uniroma3.ecommerce.model.Credentials;
+import it.uniroma3.ecommerce.model.Product;
+import it.uniroma3.ecommerce.model.User;
+import it.uniroma3.ecommerce.repository.CartRepository;
+import it.uniroma3.ecommerce.repository.ProductRepository;
+import it.uniroma3.ecommerce.service.CredentialsService;
+import it.uniroma3.ecommerce.service.UserService;
+import it.uniroma3.ecommerce.service.WishListService;
+import jakarta.validation.Valid;
+
+@Controller
+public class AuthenticationController {
+	
+	@Autowired
+	private CredentialsService credentialsService;
+
+	@Autowired
+	private ProductRepository productRepository;
+
+	@Autowired
+	private CartRepository cartRepository;
+
+	@Autowired
+	private WishListService wishListService;
+
+    @Autowired
+	private UserService userService;
+
+	@GetMapping(value = "/register") 
+	public String showRegisterForm (Model model) {
+		model.addAttribute("user", new User());
+		model.addAttribute("credentials", new Credentials());
+		return "formRegisterUser";
+	}
+	
+	@GetMapping(value = "/login") 
+	public String showLoginForm (Model model) {
+		return "formLogin";
+	}
+
+	@GetMapping(value = "/") 
+	public String index(Model model) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if (authentication instanceof AnonymousAuthenticationToken) {
+	        return "index.html";
+		}
+		else {		
+			UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
+			if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
+				return "admin/indexAdmin.html";
+			}
+		}
+        return "index.html";
+	}
+		
+    @GetMapping(value = "/success")
+    public String defaultAfterLogin() {
+		List<Product> products = (List<Product>) this.productRepository.findAll();
+		List<Cart> carts = (List<Cart>) this.cartRepository.findAll();
+		Cart cart = carts.get(0);
+		cart.setProducts(null);
+		for(Product p : products) {
+			if(p.getCart()!=null) {
+				p.setCart(null);
+			}
+		}
+		cart.setTotal(0);
+
+    	UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    	Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
+		if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
+            return "admin/indexAdmin.html";
+        }
+        return "index.html";
+    }
+
+	@PostMapping(value = { "/register" })
+    public String registerUser(@Valid @ModelAttribute("user") User user,
+                 BindingResult userBindingResult, @Valid
+                 @ModelAttribute("credentials") Credentials credentials,
+                 BindingResult credentialsBindingResult,
+                 Model model) {
+
+        if(!userBindingResult.hasErrors() && !credentialsBindingResult.hasErrors()) {
+        	userService.saveUser(user);
+			wishListService.initializeWishList(user);
+            credentials.setUser(user);
+            credentialsService.saveCredentials(credentials);
+            model.addAttribute("user", user);
+            return "registrationSuccessful";
+        }
+        return "registerUser";
+    }
+}
