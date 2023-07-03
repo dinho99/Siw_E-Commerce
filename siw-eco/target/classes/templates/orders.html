@@ -42,7 +42,6 @@
                             <p th:text="'Numero ordine: ' + ${order.id}">Ordine</p>
                             <p th:text="'Effettuato il: ' + ${order.date}">Data</p>
                             <p th:text="'Costo: ' + ${order.total} + '0 $'"></p>
-                            <a th:href="@{'/orderDetails/' + ${order.id}}">Visualizza maggiori dettagli</a>
                         </div>
                     </li>
                 </ul>

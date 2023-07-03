@@ -8,6 +8,8 @@ public interface ProductRepository extends CrudRepository<Product, Long>{
     
     public boolean existsByCode(String code);
 
+    public boolean existsByCodeAndName(String code, String name);
+
     public Product findByCode(String code);
     
 }

@@ -1,5 +1,6 @@
 package it.uniroma3.ecommerce.model;
 
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -17,11 +18,11 @@ public class Product {
 
     @NotBlank(message = "Il prodotto deve avere un codice!")
     private String code;
-    @NotBlank(message = "Il prodotto deve avere un nome")
+    @NotBlank(message = "Il prodotto deve avere un nome!")
     private String name;
+    @Min(value = 0, message = "Se aquisti questo prodotto ti dovrebbero anche dare soldi")
     private float price;
 
-    @NotBlank(message = "Non possiamo inserire una scarpa senza l'immagine!")
     private String urlImage;
 
     @ManyToOne

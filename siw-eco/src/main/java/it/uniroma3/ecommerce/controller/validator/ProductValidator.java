@@ -16,8 +16,9 @@ public class ProductValidator implements Validator {
     @Override
     public void validate(Object o, Errors errors) {
         Product product = (Product) o;
-        if(product.getCode() != null && product.getName() != null) {
-            errors.reject("product.invalid");
+        if(product.getCode() != null && product.getName() != null
+                && productRepository.existsByCodeAndName(product.getCode(), product.getName())) {
+            errors.reject("product.duplicate");
         }
     }
 

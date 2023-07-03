@@ -34,18 +34,27 @@
 		</header>
 		<main>
             <h1>Crea un nuovo prodotto da inserire nello shop:</h1>
-            <form th:action="@{/admin/newProduct}" method="POST" th:object="${product}">
+            <form th:action="@{/admin/newProduct}" method="POST" th:object="${product}" enctype="multipart/form-data">
+				<div th:if="${#fields.hasGlobalErrors()}">
+					<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p> 
+				</div>
                 <div>
                     <span><input type="text" th:field="${product.code}" placeholder="Codice"></span>
+					<div th:if="${#fields.hasErrors('code')}" th:errors="*{code}" class="error-message">
+					</div>
                 </div>
                 <div>
                     <span><input type="text" th:field="${product.name}" placeholder="Nome"></span>
+					<div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error-message">
+					</div>
                 </div>
                 <div>
                     <span><input type="text" th:field="${product.price}" placeholder="Prezzo"></span>
+					<div th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="error-message">
+					</div>
                 </div>
                 <div>
-                    <span><input type="text" th:field="${product.urlImage}" placeholder="URL dell'immagine"></span>
+                    <span><input type="file" name="image" accept="image/jpg, image/jpeg"></span>
                 </div>
                 <div>
                     <span><button type="submit">Conferma</button></span>
